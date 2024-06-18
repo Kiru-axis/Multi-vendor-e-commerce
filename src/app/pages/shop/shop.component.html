@@ -1,0 +1,39 @@
+<br />
+<nav class="breadcrumb">
+  <a class="breadcrumb-item" routerLink="/">Home</a>
+  <span class="breadcrumb-item active" aria-current="page">Shop</span>
+</nav>
+
+<div class="row g-2">
+  @for (product of customerService.selectAllProducts(); track $index) {
+  <div class="col-sm-4 product">
+    <div class="card custom-card">
+      <div class="product-image">
+        <img
+          src="{{ product.uploadPhoto }}"
+          class="card-img-top img-fluid"
+          alt="{{ product.name }}"
+        />
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">{{ product.name }}</h4>
+        <p>
+          <span class="float-left"
+            ><strong>MRP</strong>: <del>{{ product.mrp }}</del></span
+          >
+          <span class="float-right"><strong>DP</strong>: {{ product.dp }}</span>
+        </p>
+        <br />
+        <span class="text-muted">product_id {{ product.id }}</span>
+        <p class="card-text product-desc">
+          {{ product.productDesc | slice : 0 : 150 }}
+        </p>
+        <a class="btn btn-primary me-3" (click)="addToCart(product.id)"
+          >Add to Cart</a
+        >
+        <a class="btn btn-primary" (click)="quickBuy(product.id)">Buy Now</a>
+      </div>
+    </div>
+  </div>
+  }
+</div>

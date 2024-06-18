@@ -1,0 +1,8 @@
+@switch (userService.selectUser()?.role) { @case ('admin') { @if
+(authService.selectAuthUser()?.role==='admin') {
+<app-admin-profile></app-admin-profile>
+} } @case ('seller') {
+<app-seller-profile></app-seller-profile>
+} @case ('buyer') {
+<app-buyer-profile></app-buyer-profile>
+} }

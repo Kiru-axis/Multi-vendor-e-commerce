@@ -1,0 +1,484 @@
+@if (authService.selectAuthUser()) {
+
+<br />
+<div class="jumbotron p-4 p-md-4 text-white rounded bg-dark">
+  <div class="col-md-12 px-0">
+    <h3 class="display-4 font-italic">
+      Welcome to {{ authService.selectAuthUser()?.name }} dashboard
+    </h3>
+    <p class="lead my-3">You can manage your products and orders here</p>
+  </div>
+</div>
+
+<button
+  data-bs-toggle="modal"
+  data-bs-target="#productCrudModal"
+  class="btn btn-success mt-2 p-3"
+  (click)="onOpenAddProductModal()"
+>
+  Add Product
+</button>
+
+<div class="row mt-2 mb-4">
+  <div class="col-12 col-md-6 my-3 my-md-0">
+    <div class="card shadow border-0 rounded">
+      <h4 class="text-center fw-semibold mb-3">Products</h4>
+      <div class="card-body">
+        <div class="mb-4 text-muted">
+          Total Products:
+          <strong>{{ customerService.selectSellerProducts().length }}</strong>
+        </div>
+
+        <div class="progressbar-div">
+          <div class="progress">
+            <div
+              class="progress-bar text-bg-success"
+              role="progressbar"
+              [style]="{
+                width:
+                  (customerService.selectPublsihedProducts() /
+                    customerService.selectSellerProducts().length || 0) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Published ({{ customerService.selectPublsihedProducts() }})
+            </div>
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar text-bg-info"
+              role="progressbar"
+              [style]="{
+                width:
+                  (customerService.selectDraftProducts() /
+                    customerService.selectSellerProducts().length || 0) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Drafts ({{ customerService.selectDraftProducts() }})
+            </div>
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar text-bg-danger"
+              role="progressbar"
+              [style]="{
+                width:
+                  (customerService.selectInactiveProducts() /
+                    customerService.selectSellerProducts().length || 0) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Inactive ({{ customerService.selectInactiveProducts() }})
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <div class="card shadow border-0 rounded">
+      <h4 class="text-center fw-semibold mb-3">Orders</h4>
+      <div class="card-body">
+        <div class="mb-3">
+          <div class="mb-1 text-muted">
+            Last Order Date:
+            <strong>{{
+              customerService.selectLastSale() | date : "longDate"
+            }}</strong>
+          </div>
+          <div class="mb-1 text-muted">
+            Total Sales:
+            <strong>{{ customerService.selectTotalSales() }}</strong>
+          </div>
+        </div>
+
+        <div class="progressbar-div">
+          <div class="progress">
+            <div
+              class="progress-bar text-bg-info"
+              role="progressbar"
+              [style]="{
+                width:
+                  (customerService.selectPendingSales() /
+                    customerService.selectTotalSales()) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Pending ({{ customerService.selectPendingSales() }})
+            </div>
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar text-bg-success"
+              role="progressbar"
+              [style]="{
+                width:
+                  (customerService.selectProcessedSales() /
+                    customerService.selectTotalSales()) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Processed ({{ customerService.selectProcessedSales() }})
+            </div>
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar text-bg-danger"
+              role="progressbar"
+              [style]="{
+                width:
+                  (customerService.selectRejectedSales() /
+                    customerService.selectTotalSales()) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="50"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Rejected ({{ customerService.selectRejectedSales() }})
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-2 mt-md-4">
+  <!-- Nav tabs -->
+  <ul
+    class="nav nav-tabs d-flex justify-content-evenly border-0"
+    id="myTab"
+    role="tablist"
+  >
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="home-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#home"
+        type="button"
+        role="tab"
+        aria-controls="home"
+        aria-selected="true"
+      >
+        Orders
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="profile-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#profile"
+        type="button"
+        role="tab"
+        aria-controls="profile"
+        aria-selected="false"
+      >
+        Products
+      </button>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">MRP</th>
+            <th scope="col">DP</th>
+            <th scope="col">Paid</th>
+            <th scope="col">Buyer</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ord of customerService.selectSellerSales(); track $index) {
+          <tr>
+            <th scope="row">{{ $index + 1 }}</th>
+            <td>
+              <div class="table-image">
+                <img
+                  [src]="ord.product.uploadPhoto"
+                  alt="product-img"
+                  class="img-fluid"
+                />
+              </div>
+            </td>
+            <td>{{ ord.product.name }}</td>
+            <td>{{ ord.product.mrp }}</td>
+            <td>{{ ord.product.dp }}</td>
+            <td>{{ ord.createdAt | date : "shortDate" }}</td>
+            <td>
+              <a routerLink="/users/{{ ord.userId }}">
+                {{ ord.userId }}
+              </a>
+            </td>
+          </tr>
+
+          }
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="tab-pane active"
+      id="profile"
+      role="tabpanel"
+      aria-labelledby="profile-tab"
+    >
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">MRP</th>
+            <th scope="col">DP</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of customerService.selectSellerProducts(); track $index)
+          {
+          <tr>
+            <th scope="row">{{ $index + 1 }}</th>
+            <td>{{ product.name }}</td>
+            <td>{{ product.mrp }}</td>
+            <td>{{ product.dp }}</td>
+            <td>{{ product.status }}</td>
+            <td>
+              <span
+                class="sim-pointer"
+                data-bs-toggle="modal"
+                data-bs-target="#productCrudModal"
+                (click)="onOpenEditProductModal(product.id)"
+                ><fa-icon [icon]="icons.edit"></fa-icon
+              ></span>
+              &nbsp;&nbsp;&nbsp;
+              <span class="sim-pointer" (click)="deleteProduct(product.id)"
+                ><fa-icon [icon]="icons.del"></fa-icon
+              ></span>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+}
+
+<!-- Add Modal -->
+
+<div
+  class="modal fade"
+  id="productCrudModal"
+  tabindex="-1"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  role="dialog"
+  aria-labelledby="modalTitleId"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitleId">{{ modalHeader }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form [formGroup]="addEditProductForm">
+        <div class="modal-body">
+          <div class="form-group mb-3">
+            <label class="fw-semibold mb-1" for="productName"
+              >Product Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              [ngClass]="{
+                'is-invalid':
+                  (rf.name.touched || rf.name.dirty) && rf.name.errors
+              }"
+            />
+            <div
+              *ngIf="(rf.name.touched || rf.name.dirty) && rf.name.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="rf.name.errors?.['required']">Name is required</div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="fw-semibold mb-1" for="productImage"
+              >Product Image URL</label
+            >
+            <input
+              type="url"
+              class="form-control"
+              formControlName="uploadPhoto"
+              [ngClass]="{
+                'is-invalid':
+                  (rf.uploadPhoto.touched || rf.uploadPhoto.dirty) &&
+                  rf.uploadPhoto.errors
+              }"
+            />
+            <div
+              *ngIf="
+                (rf.uploadPhoto.touched || rf.uploadPhoto.dirty) &&
+                rf.uploadPhoto.errors
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="rf.uploadPhoto.errors?.['required']">
+                Please upload file
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="fw-semibold mb-1" for="productDescription"
+              >Description</label
+            >
+            <textarea
+              class="form-control"
+              rows="3"
+              formControlName="productDesc"
+              [ngClass]="{
+                'is-invalid':
+                  (rf.productDesc.touched || rf.productDesc.dirty) &&
+                  rf.productDesc.errors
+              }"
+            ></textarea>
+            <div
+              *ngIf="
+                (rf.productDesc.touched || rf.productDesc.dirty) &&
+                rf.productDesc.errors
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="rf.productDesc.errors?.['required']">
+                Write something about product
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="fw-semibold mb-1" for="productMRP">MRP</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="mrp"
+              [ngClass]="{
+                'is-invalid': (rf.mrp.touched || rf.mrp.dirty) && rf.mrp.errors
+              }"
+            />
+            <div
+              *ngIf="(rf.mrp.touched || rf.mrp.dirty) && rf.mrp.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="rf.mrp.errors?.['required']">MRP is required</div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="fw-semibold mb-1" for="productDP">DP</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="dp"
+              [ngClass]="{
+                'is-invalid': (rf.dp.touched || rf.dp.dirty) && rf.dp.errors
+              }"
+            />
+            <div
+              *ngIf="(rf.dp.touched || rf.dp.dirty) && rf.dp.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="rf.dp.errors?.['required']">DP is required</div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="fw-semibold mb-1" for="productStatus">Status</label>
+            <select
+              class="form-control"
+              formControlName="status"
+              [ngClass]="{
+                'is-invalid':
+                  (rf.status.touched || rf.status.dirty) && rf.status.errors
+              }"
+            >
+              <option value="draft">Draft</option>
+              <option value="publish">Publish</option>
+              <option value="inactive">Inactive</option>
+            </select>
+            <div
+              *ngIf="(rf.status.touched || rf.status.dirty) && rf.status.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="rf.status.errors?.['required']">
+                Select one option
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+
+          <button
+            class="btn btn-primary"
+            (click)="addNewProduct()"
+            *ngIf="addProductIntent"
+            type="submit"
+          >
+            Add New
+          </button>
+          <button
+            class="btn btn-primary"
+            (click)="updateProduct()"
+            *ngIf="editProductIntent"
+            type="submit"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

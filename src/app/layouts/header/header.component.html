@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-sm navbar-dark py-4 bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Commerce</a>
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/home" aria-current="page"
+            >Home <span class="visually-hidden">(current)</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shop">Shop</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact">Contact</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ma-auto mt-2 mt-lg-0">
+        @if (authService.selectLogged_in() && authService.selectAuthUser()) {
+        @switch (authService.selectAuthUser()?.role) { @case ('admin') {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-info"
+            routerLink="/users/{{ authService.selectAuthUser()?.id }}"
+            >{{ authService.selectAuthUser()?.name }}
+          </a>
+        </li>
+
+        } @case ('seller') {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/seller">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-info"
+            routerLink="/users/{{ authService.selectAuthUser()?.id }}"
+            >{{ authService.selectAuthUser()?.name }}
+          </a>
+        </li>
+
+        } @case ('buyer') {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/buyer">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-info"
+            routerLink="/users/{{ authService.selectAuthUser()?.id }}"
+            >{{ authService.selectAuthUser()?.name }}
+          </a>
+        </li>
+
+        } }
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
+        } @else {
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth/login">Login</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth/register">Register</a>
+        </li>
+
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

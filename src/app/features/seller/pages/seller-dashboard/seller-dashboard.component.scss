@@ -1,0 +1,20 @@
+.progressbar-div {
+  .progress {
+    margin-top: 0.7rem;
+    height: 1.5rem;
+    .progress-bar {
+      color: black;
+      font-weight: bold;
+    }
+  }
+}
+
+.nav-link {
+  font-size: 1.5rem;
+
+  &.active {
+    padding-bottom: 0.5rem;
+    border: none;
+    border-bottom: 1.4px solid black;
+  }
+}

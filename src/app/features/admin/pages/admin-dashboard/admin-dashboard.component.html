@@ -1,0 +1,406 @@
+<br />
+<div class="jumbotron p-3 p-md-2 text-white rounded bg-dark">
+  <div class="col-md-12 px-0">
+    <h3 class="display-4 font-italic">Welcome to admin dasboard</h3>
+    <p class="lead my-3">Admin can manage user and product details.</p>
+  </div>
+</div>
+<div class="row mt-2 mb-4">
+  <div class="col-12 col-md-4 my-3 my-md-0">
+    <div class="card shadow border-0 rounded">
+      <h4 class="text-center fw-semibold mb-3">Products</h4>
+      <div class="card-body">
+        <div class="mb-4 text-muted">
+          Total Products:
+          <strong>{{ adminService.selectProducts().length }}</strong>
+        </div>
+
+        <div class="progressbar-div">
+          <div class="progress mb-2">
+            <div
+              class="progress-bar text-bg-success"
+              role="progressbar"
+              [style]="{
+                width:
+                  (adminService.selectPublsihedProducts() /
+                    adminService.selectProducts().length) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Published ({{ adminService.selectPublsihedProducts() }})
+            </div>
+          </div>
+          <div class="progress mb-2">
+            <div
+              class="progress-bar text-bg-info"
+              role="progressbar"
+              [style]="{
+                width:
+                  (adminService.selectDraftProducts() /
+                    adminService.selectProducts().length) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Drafts ({{ adminService.selectDraftProducts() }})
+            </div>
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar text-bg-danger"
+              role="progressbar"
+              [style]="{
+                width:
+                  (adminService.selectInactiveProducts() /
+                    adminService.selectProducts().length) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Inactive ({{ adminService.selectInactiveProducts() }})
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-4 my-3 my-md-0">
+    <div class="card shadow border-0 rounded">
+      <h4 class="text-center fw-semibold mb-3">Users</h4>
+      <div class="card-body">
+        <div class="mb-4 text-muted">
+          Total Users:
+          <strong>{{ adminService.selectUsers().length }}</strong>
+          <small class="admin-helper">(current admin excluded)</small>
+        </div>
+
+        <div class="progressbar-div">
+          <div class="progress mb-2">
+            <div
+              class="progress-bar text-bg-success"
+              role="progressbar"
+              [style]="{
+                width:
+                  (adminService.selectAdminsCount() /
+                    adminService.selectUsers().length) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Admins ({{ adminService.selectAdminsCount() }})
+            </div>
+          </div>
+          <div class="progress mb-2">
+            <div
+              class="progress-bar text-bg-info"
+              role="progressbar"
+              [style]="{
+                width:
+                  (adminService.selectBuyersCount() /
+                    adminService.selectUsers().length) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Buyers ({{ adminService.selectBuyersCount() }})
+            </div>
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar text-bg-danger"
+              role="progressbar"
+              [style]="{
+                width:
+                  (adminService.selectSellersCount() /
+                    adminService.selectUsers().length) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Sellers ({{ adminService.selectSellersCount() }})
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-4 my-3 my-md-0">
+    <div class="card shadow border-0 rounded">
+      <h4 class="text-center fw-semibold mb-3">Orders</h4>
+      <div class="card-body">
+        <div class="mb-1 text-muted">
+          Total Orders:
+          <strong>{{ adminService.selectOrders().length }}</strong>
+        </div>
+        <div class="mb-2 text-muted">
+          Last Order:
+          <strong>{{
+            adminService.selectLastOrder() | date : "longDate"
+          }}</strong>
+        </div>
+
+        <div class="progressbar-div">
+          <div class="progress mb-2">
+            <div
+              class="progress-bar text-bg-success"
+              role="progressbar"
+              [style]="{
+                width:
+                  (adminService.selectProcessedOrders() /
+                    adminService.selectOrders().length) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Processed ({{ adminService.selectProcessedOrders() }})
+            </div>
+          </div>
+          <div class="progress mb-2">
+            <div
+              class="progress-bar text-bg-info"
+              role="progressbar"
+              [style]="{
+                width:
+                  (adminService.selectPendingOrders() /
+                    adminService.selectOrders().length) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Pending ({{ adminService.selectPendingOrders() }})
+            </div>
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar text-bg-danger"
+              role="progressbar"
+              [style]="{
+                width:
+                  (adminService.selectRejectedOrders() /
+                    adminService.selectOrders().length) *
+                    100 +
+                  '%'
+              }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Rejected ({{ adminService.selectRejectedOrders() }})
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-2 mt-md-4">
+  <!-- Nav tabs -->
+  <ul
+    class="nav nav-tabs d-flex justify-content-evenly border-0"
+    id="myTab"
+    role="tablist"
+  >
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="users-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#users"
+        type="button"
+        role="tab"
+        aria-controls="users"
+        aria-selected="true"
+      >
+        Users
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="home-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#home"
+        type="button"
+        role="tab"
+        aria-controls="home"
+        aria-selected="true"
+      >
+        Orders
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="profile-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#profile"
+        type="button"
+        role="tab"
+        aria-controls="profile"
+        aria-selected="false"
+      >
+        Products
+      </button>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <!-- users -->
+    <div
+      class="tab-pane"
+      id="users"
+      role="tabpanel"
+      aria-labelledby="users-tab"
+    >
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">DOB</th>
+            <th scope="col">City</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of adminService.selectUsers(); track $index) {
+          <tr>
+            <th scope="row">{{ $index + 1 }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ user.mobNumber }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.dob | date : "shortDate" }}</td>
+            <td>{{ user.address?.city }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+              <a routerLink="/users/{{ user.id }}" class="sim-pointer">
+                <fa-icon [icon]="icons.view"></fa-icon>
+              </a>
+              &nbsp;&nbsp;&nbsp;
+              <span class="sim-pointer" (click)="deleteUser(user.id)">
+                <fa-icon [icon]="icons.del"></fa-icon>
+              </span>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- orders -->
+    <div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">MRP</th>
+            <th scope="col">DP</th>
+            <th scope="col">Paid</th>
+            <th scope="col">Buyer</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ord of adminService.selectOrders(); track $index) {
+          <tr>
+            <th scope="row">{{ $index + 1 }}</th>
+            <td>
+              <div class="table-image">
+                <img
+                  [src]="ord.product.uploadPhoto"
+                  alt="product-img"
+                  class="img-fluid"
+                />
+              </div>
+            </td>
+            <td>{{ ord.product.name }}</td>
+            <td>{{ ord.product.mrp }}</td>
+            <td>{{ ord.product.dp }}</td>
+            <td>{{ ord.createdAt | date : "shortDate" }}</td>
+            <td>
+              <a routerLink="/users/{{ ord.userId }}">
+                {{ ord.userId }}
+              </a>
+            </td>
+          </tr>
+
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- products -->
+    <div
+      class="tab-pane active"
+      id="profile"
+      role="tabpanel"
+      aria-labelledby="profile-tab"
+    >
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">MRP</th>
+            <th scope="col">DP</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of adminService.selectProducts(); track $index) {
+          <tr>
+            <th scope="row">{{ $index + 1 }}</th>
+            <td>{{ product.name }}</td>
+            <td>{{ product.mrp }}</td>
+            <td>{{ product.dp }}</td>
+            <td>{{ product.status }}</td>
+            <td>
+              <span class="sim-pointer"
+                ><fa-icon [icon]="icons.edit"></fa-icon
+              ></span>
+              &nbsp;&nbsp;&nbsp;
+              <span class="sim-pointer" (click)="deleteProduct(product.id)"
+                ><fa-icon [icon]="icons.del"></fa-icon
+              ></span>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

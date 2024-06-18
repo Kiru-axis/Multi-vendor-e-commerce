@@ -1,0 +1,48 @@
+@if (user) {
+<br />
+<div class="row">
+  <div class="col-md-10">
+    <strong>My Orders</strong>
+  </div>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Image</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">MRP</th>
+      <th scope="col">DP</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Seller</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (ord of customerService.selectPurchases(); track $index) {
+    <tr>
+      <th scope="row">{{ $index + 1 }}</th>
+      <td>
+        <div class="table-image">
+          <img
+            [src]="ord.product.uploadPhoto"
+            alt="product-img"
+            class="img-fluid"
+          />
+        </div>
+      </td>
+      <td>{{ ord.product.name }}</td>
+      <td>{{ ord.product.mrp }}</td>
+      <td>{{ ord.product.dp }}</td>
+      <td>{{ ord.createdAt | date : "shortDate" }}</td>
+      <td>
+        <a routerLink="/users/{{ ord.product.sellerId }}">
+          {{ ord.product.sellerId }}
+        </a>
+      </td>
+    </tr>
+
+    }
+  </tbody>
+</table>
+
+}

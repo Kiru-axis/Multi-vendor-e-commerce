@@ -1,0 +1,405 @@
+{
+  "user": [
+    {
+      "name": "Admin",
+      "role": "admin",
+      "gender": "male",
+      "age": 44,
+      "dob": "1987-09-17",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "mobNumber": "1234567891",
+      "language": [
+        "Arabic",
+        "Spanish"
+      ],
+      "uploadPhoto": "assets/images/avatars/avatar-1.png",
+      "aboutYou": "All about them bands",
+      "address": {
+        "addLine1": "Luban",
+        "addLine2": "Buyamurt",
+        "state": "Iran",
+        "city": "Alxan",
+        "zipCode": 560037
+      },
+      "id": "1"
+    },
+    {
+      "name": "Seller One",
+      "role": "seller",
+      "gender": "male",
+      "age": 25,
+      "dob": "1999-12-31",
+      "email": "seller@gmail.com",
+      "password": "123456",
+      "mobNumber": "99999887787",
+      "language": [
+        "German",
+        "English"
+      ],
+      "uploadPhoto": "assets/images/avatars/avatar-2.png",
+      "aboutYou": "Sell sand and stuff",
+      "address": {
+        "addLine1": "Benso",
+        "addLine2": "Ashan",
+        "state": "Japan",
+        "city": "Askan",
+        "zipCode": 145678
+      },
+      "id": "2"
+    },
+    {
+      "name": "Buyer One",
+      "role": "buyer",
+      "gender": "male",
+      "age": 19,
+      "dob": "1994-11-30",
+      "email": "buyer@gmail.com",
+      "password": "123456",
+      "mobNumber": "6753490712",
+      "language": [
+        "German"
+      ],
+      "aboutYou": "hell yea hell yea",
+      "address": {
+        "addLine1": "Herty",
+        "addLine2": "Browning",
+        "state": "AW",
+        "city": "Gandr",
+        "zipCode": "8976"
+      },
+      "id": "3"
+    }
+  ],
+  "orders": [
+    {
+      "id": "12da",
+      "productId": "1",
+      "deliveryAddress": {
+        "addLine1": "Herty",
+        "addLine2": "Browning",
+        "state": "AW",
+        "city": "Gandr",
+        "zipCode": "8976"
+      },
+      "userId": "3",
+      "contact": "seller@gmail.com",
+      "createdAt": "Mon Jun 17 2024 18:12:32 GMT+0300 (East Africa Time)",
+      "product": {
+        "id": "1",
+        "name": "Water Bottle",
+        "productDesc": "Hygienic bottle: The bottle is made of 100% food grade material & is BPA free ensures a safe drinking. Crystal Clarity: It's sheer body helps to easily identify the contents & also adds beauty to the liquid that you put in, Leak Proof: The bottle has a liquid tight cap that prevents leakage & is unbreakable. Freezer safe: These bottles are compatible with refrigerator & not being curvy the bottle occupies less space. Looks pretty in the fridge or on the table top.",
+        "status": "publish",
+        "mrp": 1123,
+        "dp": 990,
+        "uploadPhoto": "assets/images/products/prod1.jpg",
+        "sellerId": "2",
+        "seller": {
+          "id": "2",
+          "email": "seller@gmail.com"
+        }
+      },
+      "status": "pending"
+    },
+    {
+      "id": "28c1",
+      "productId": "4",
+      "deliveryAddress": {
+        "addLine1": "Herty",
+        "addLine2": "Browning",
+        "state": "AW",
+        "city": "Gandr",
+        "zipCode": "8976"
+      },
+      "userId": "3",
+      "contact": "seller@gmail.com",
+      "createdAt": "Mon Jun 17 2024 18:12:33 GMT+0300 (East Africa Time)",
+      "product": {
+        "id": "4",
+        "name": "Metro Living Self Design Pillows Cover",
+        "productDesc": "Regional Speciality\nRajasthan\nFabric Care\nMachinne Wash, Do not Bleach, Wash in Cold Water\nThread Count\n104\nSales Package\nPack of 2 Pillow Cover",
+        "status": "draft",
+        "mrp": 897,
+        "dp": 135,
+        "uploadPhoto": "assets/images/products/prod3.jpg",
+        "sellerId": "2",
+        "seller": {
+          "id": "2",
+          "email": "seller@gmail.com"
+        }
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "6689",
+      "productId": "6",
+      "deliveryAddress": {
+        "addLine1": "Herty",
+        "addLine2": "Browning",
+        "state": "AW",
+        "city": "Gandr",
+        "zipCode": "8976"
+      },
+      "userId": "3",
+      "contact": "seller@gmail.com",
+      "createdAt": "Mon Jun 17 2024 18:12:38 GMT+0300 (East Africa Time)",
+      "product": {
+        "id": "6",
+        "name": "Polyester Door Curtain",
+        "productDesc": "Transform the ambiance of your home with these elegant, crushed texture, light weight, solid color curtains. These curtains are available in several colors and sizes to match to your home decor and the gracefully flowing polyester is durable and machine washable for your convenience.",
+        "status": "publish",
+        "mrp": 900,
+        "dp": 890,
+        "uploadPhoto": "assets/images/products/prod11.jpg",
+        "sellerId": "2",
+        "seller": {
+          "id": "2",
+          "email": "seller@gmail.com"
+        }
+      },
+      "status": "processed"
+    },
+    {
+      "id": "dc17",
+      "product": {
+        "id": "11",
+        "name": "Water Bottle",
+        "productDesc": "Hygienic bottle: The bottle is made of 100% food grade material & is BPA free ensures a safe drinking. Crystal Clarity: It's sheer body helps to easily identify the contents & also adds beauty to the liquid that you put in, Leak Proof: The bottle has a liquid tight cap that prevents leakage & is unbreakable. Freezer safe: These bottles are compatible with refrigerator & not being curvy the bottle occupies less space. Looks pretty in the fridge or on the table top.",
+        "status": "publish",
+        "mrp": 123,
+        "dp": 456,
+        "uploadPhoto": "assets/images/products/prod9.jpg",
+        "sellerId": "4",
+        "seller": {
+          "id": "4",
+          "email": "anna@gmail.com"
+        }
+      },
+      "productId": "11",
+      "userId": "3",
+      "deliveryAddress": {
+        "addLine1": "Herty",
+        "addLine2": "Browning",
+        "state": "AW",
+        "city": "Gandr",
+        "zipCode": "8976"
+      },
+      "contact": "4",
+      "createdAt": "Tue Jun 18 2024 09:53:28 GMT+0300 (East Africa Time)",
+      "status": "processed"
+    },
+    {
+      "id": "affb",
+      "product": {
+        "name": "Water Bottle",
+        "mrp": 1123,
+        "dp": 990,
+        "uploadPhoto": "assets/images/products/prod1.jpg",
+        "status": "publish",
+        "productDesc": "Hygienic bottle: The bottle is made of 100% food grade material & is BPA free ensures a safe drinking. Crystal Clarity: It's sheer body helps to easily identify the contents & also adds beauty to the liquid that you put in, Leak Proof: The bottle has a liquid tight cap that prevents leakage & is unbreakable. Freezer safe: These bottles are compatible with refrigerator & not being curvy the bottle occupies less space. Looks pretty in the fridge or on the table top.",
+        "id": "1",
+        "sellerId": "4",
+        "seller": {
+          "id": "2",
+          "email": "seller@gmail.com"
+        }
+      },
+      "productId": "1",
+      "userId": "3",
+      "deliveryAddress": {
+        "addLine1": "Herty",
+        "addLine2": "Browning",
+        "state": "AW",
+        "city": "Gandr",
+        "zipCode": "8976"
+      },
+      "contact": "4",
+      "createdAt": "Tue Jun 18 2024 09:59:01 GMT+0300 (East Africa Time)",
+      "status": "processed"
+    }
+  ],
+  "products": [
+    {
+      "name": "Water Bottle",
+      "mrp": 1123,
+      "dp": 990,
+      "uploadPhoto": "assets/images/products/prod1.jpg",
+      "status": "publish",
+      "productDesc": "Hygienic bottle: The bottle is made of 100% food grade material & is BPA free ensures a safe drinking. Crystal Clarity: It's sheer body helps to easily identify the contents & also adds beauty to the liquid that you put in, Leak Proof: The bottle has a liquid tight cap that prevents leakage & is unbreakable. Freezer safe: These bottles are compatible with refrigerator & not being curvy the bottle occupies less space. Looks pretty in the fridge or on the table top.",
+      "id": "1",
+      "sellerId": "4",
+      "seller": {
+        "id": "2",
+        "email": "seller@gmail.com"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Metro Living Self Design Pillows Cover",
+      "productDesc": "Regional Speciality\nRajasthan\nFabric Care\nMachinne Wash, Do not Bleach, Wash in Cold Water\nThread Count\n104\nSales Package\nPack of 2 Pillow Cover",
+      "status": "draft",
+      "mrp": 567,
+      "dp": 123,
+      "uploadPhoto": "assets/images/products/prod2.jpg",
+      "sellerId": "4",
+      "seller": {
+        "id": "4",
+        "email": "anna@gmail.com"
+      }
+    },
+    {
+      "id": "4",
+      "name": "Metro Living Self Design Pillows Cover",
+      "productDesc": "Regional Speciality\nRajasthan\nFabric Care\nMachinne Wash, Do not Bleach, Wash in Cold Water\nThread Count\n104\nSales Package\nPack of 2 Pillow Cover",
+      "status": "draft",
+      "mrp": 897,
+      "dp": 135,
+      "uploadPhoto": "assets/images/products/prod3.jpg",
+      "sellerId": "2",
+      "seller": {
+        "id": "2",
+        "email": "seller@gmail.com"
+      }
+    },
+    {
+      "id": "5",
+      "name": "TIZUM Aluminium Portable Stand",
+      "productDesc": "The aluminium material used in the stand makes it sturdy and strong. Multi-angle fold-ability provides with a seamless viewing experience. The light weight of this stand allows it to be carried around everywhere conveniently. Universally designed to fit 3.5-8 inch phones and tablets without hassle. Apart from phones and tabs, the stand also holds gaming console like Nintendo play. •Aluminium Stand with Multi-Angle foldability ",
+      "status": "inactive",
+      "mrp": 87,
+      "dp": 789,
+      "uploadPhoto": "assets/images/products/prod4.jpg",
+      "sellerId": "4",
+      "seller": {
+        "id": "4",
+        "email": "anna@gmail.com"
+      }
+    },
+    {
+      "id": "6",
+      "name": "Polyester Door Curtain",
+      "productDesc": "Transform the ambiance of your home with these elegant, crushed texture, light weight, solid color curtains. These curtains are available in several colors and sizes to match to your home decor and the gracefully flowing polyester is durable and machine washable for your convenience.",
+      "status": "publish",
+      "mrp": 900,
+      "dp": 890,
+      "uploadPhoto": "assets/images/products/prod11.jpg",
+      "sellerId": "2",
+      "seller": {
+        "id": "2",
+        "email": "seller@gmail.com"
+      }
+    },
+    {
+      "id": "7",
+      "name": "Water Bottle",
+      "productDesc": "Hygienic bottle: The bottle is made of 100% food grade material & is BPA free ensures a safe drinking. Crystal Clarity: It's sheer body helps to easily identify the contents & also adds beauty to the liquid that you put in, Leak Proof: The bottle has a liquid tight cap that prevents leakage & is unbreakable. Freezer safe: These bottles are compatible with refrigerator & not being curvy the bottle occupies less space. Looks pretty in the fridge or on the table top.",
+      "status": "publish",
+      "mrp": 786,
+      "dp": 55,
+      "uploadPhoto": "assets/images/products/prod15.jpg",
+      "sellerId": "4",
+      "seller": {
+        "id": "4",
+        "email": "anna@gmail.com"
+      }
+    },
+    {
+      "id": "8",
+      "name": "Metro Living Self Design Pillows Cover",
+      "productDesc": "Regional Speciality\nRajasthan\nFabric Care\nMachinne Wash, Do not Bleach, Wash in Cold Water\nThread Count\n104\nSales Package\nPack of 2 Pillow Cover",
+      "status": "draft",
+      "mrp": 765,
+      "dp": 890,
+      "uploadPhoto": "assets/images/products/prod7.jpg",
+      "sellerId": "2",
+      "seller": {
+        "id": "2",
+        "email": "seller@gmail.com"
+      }
+    },
+    {
+      "id": "9",
+      "name": "TIZUM Aluminium Portable Stand",
+      "productDesc": "The aluminium material used in the stand makes it sturdy and strong. Multi-angle fold-ability provides with a seamless viewing experience. The light weight of this stand allows it to be carried around everywhere conveniently. Universally designed to fit 3.5-8 inch phones and tablets without hassle. Apart from phones and tabs, the stand also holds gaming console like Nintendo play. •Aluminium Stand with Multi-Angle foldability ",
+      "status": "inactive",
+      "mrp": 765,
+      "dp": 890,
+      "uploadPhoto": "assets/images/products/prod8.jpg",
+      "sellerId": "2",
+      "seller": {
+        "id": "2",
+        "email": "seller@gmail.com"
+      }
+    },
+    {
+      "id": "10",
+      "name": "Polyester Door Curtain",
+      "productDesc": "Transform the ambiance of your home with these elegant, crushed texture, light weight, solid color curtains. These curtains are available in several colors and sizes to match to your home decor and the gracefully flowing polyester is durable and machine washable for your convenience.",
+      "status": "publish",
+      "mrp": 764,
+      "dp": 99,
+      "uploadPhoto": "assets/images/products/prod9.jpg",
+      "sellerId": "2",
+      "seller": {
+        "id": "2",
+        "email": "seller@gmail.com"
+      }
+    },
+    {
+      "id": "11",
+      "name": "Water Bottle",
+      "productDesc": "Hygienic bottle: The bottle is made of 100% food grade material & is BPA free ensures a safe drinking. Crystal Clarity: It's sheer body helps to easily identify the contents & also adds beauty to the liquid that you put in, Leak Proof: The bottle has a liquid tight cap that prevents leakage & is unbreakable. Freezer safe: These bottles are compatible with refrigerator & not being curvy the bottle occupies less space. Looks pretty in the fridge or on the table top.",
+      "status": "publish",
+      "mrp": 123,
+      "dp": 456,
+      "uploadPhoto": "assets/images/products/prod9.jpg",
+      "sellerId": "4",
+      "seller": {
+        "id": "4",
+        "email": "anna@gmail.com"
+      }
+    },
+    {
+      "id": "12",
+      "name": "Metro Living Self Design Pillows Cover",
+      "productDesc": "Regional Speciality\nRajasthan\nFabric Care\nMachinne Wash, Do not Bleach, Wash in Cold Water\nThread Count\n104\nSales Package\nPack of 2 Pillow Cover",
+      "status": "draft",
+      "mrp": 543,
+      "dp": 321,
+      "uploadPhoto": "assets/images/products/prod10.jpg",
+      "sellerId": "4",
+      "seller": {
+        "id": "4",
+        "email": "anna@gmail.com"
+      }
+    },
+    {
+      "id": "13",
+      "name": "TIZUM Aluminium Portable Stand",
+      "productDesc": "The aluminium material used in the stand makes it sturdy and strong. Multi-angle fold-ability provides with a seamless viewing experience. The light weight of this stand allows it to be carried around everywhere conveniently. Universally designed to fit 3.5-8 inch phones and tablets without hassle. Apart from phones and tabs, the stand also holds gaming console like Nintendo play. •Aluminium Stand with Multi-Angle foldability ",
+      "status": "inactive",
+      "mrp": 765,
+      "dp": 890,
+      "uploadPhoto": "assets/images/products/prod11.jpg",
+      "sellerId": "4",
+      "seller": {
+        "id": "4",
+        "email": "anna@gmail.com"
+      }
+    },
+    {
+      "id": "456",
+      "name": "Polyester Door Curtainssss",
+      "productDesc": "Transform the ambiance of your home with these elegant, crushed texture, light weight, solid color curtains. These curtains are available in several colors and sizes to match to your home decor and the gracefully flowing polyester is durable and machine washable for your convenience.",
+      "status": "publish",
+      "mrp": 765,
+      "dp": 498,
+      "uploadPhoto": "assets/images/products/prod12.jpg",
+      "sellerId": "4",
+      "seller": {
+        "id": "4",
+        "email": "anna@gmail.com"
+      }
+    }
+  ]
+}
